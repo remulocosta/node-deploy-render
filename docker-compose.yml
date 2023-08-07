@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    container_name: node-deploy
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - POSTGRES_USER=remulo
+      - POSTGRES_PASSWORD=minhasenha123
+      - POSTGRES_DB=nodedeploy
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/postgresql/data:/var/lib/postgresql/data
